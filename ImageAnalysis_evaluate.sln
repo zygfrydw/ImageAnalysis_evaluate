@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Image_Classifier", "Image_classifier\Image_Classifier.csproj", "{7A4CE38C-3DE9-482E-A82E-5EE7F0FC065D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Results_Comparer", "Results_Comparer\Results_Comparer.csproj", "{890B38DD-B945-4C59-B943-6DAD62F34E2F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A4CE38C-3DE9-482E-A82E-5EE7F0FC065D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A4CE38C-3DE9-482E-A82E-5EE7F0FC065D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A4CE38C-3DE9-482E-A82E-5EE7F0FC065D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A4CE38C-3DE9-482E-A82E-5EE7F0FC065D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{890B38DD-B945-4C59-B943-6DAD62F34E2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{890B38DD-B945-4C59-B943-6DAD62F34E2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{890B38DD-B945-4C59-B943-6DAD62F34E2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{890B38DD-B945-4C59-B943-6DAD62F34E2F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

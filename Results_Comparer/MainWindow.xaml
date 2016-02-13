@@ -20,9 +20,9 @@
         </Grid.ColumnDefinitions>
         <StackPanel Margin="10,0,10,10" Orientation="Vertical" Grid.Row="1" VerticalAlignment="Bottom" >
             <Label Content="Reference document"/>
-            <TextBox x:Name="RefPath" Height="23" TextWrapping="Wrap" Text="{Binding ReferencePath}" MouseDoubleClick="ReferencePath_DoubleClick" VerticalAlignment="Top"/>
+            <TextBox x:Name="RefPath" Height="46" TextWrapping="Wrap" Text="{Binding ReferencePath}" MouseDoubleClick="ReferencePath_DoubleClick" VerticalAlignment="Top"/>
             <Label Content="Results document"/>
-            <TextBox x:Name="EventPath" Height="23" TextWrapping="Wrap" Text="{Binding ResultsPath}" MouseDoubleClick="EventPath_DoubleClick" VerticalAlignment="Top"/>
+            <TextBox x:Name="EventPath" Height="46" TextWrapping="Wrap" Text="{Binding ResultsPath}" MouseDoubleClick="EventPath_DoubleClick" VerticalAlignment="Top"/>
             <Label Content="Image set"/>
             <TextBox x:Name="ImageSetPathTextBox" Height="46" TextWrapping="Wrap" Text="{Binding ImageSetPath}" MouseDoubleClick="ImageSet_DoubleClick" VerticalAlignment="Top"/>
             <Button x:Name="CompareButton" Content="Compare results" VerticalAlignment="Top" Height="50"  Click="CompareButton_Click" Margin="0,10,0,0" FontSize="21.333" FontWeight="Bold"/>

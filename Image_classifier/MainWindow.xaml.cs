@@ -256,12 +256,25 @@ namespace Image_classifier
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
-            SaveDataToFile();
-            
+            if (imageTags == null || imageTags.Length == 0)
+            {
+                return;
+            }
+            var result = MessageBox.Show("Do you want to save tags?", "Save results?", MessageBoxButton.YesNoCancel);
+            if (result == MessageBoxResult.Yes)
+            {
+                SaveDataToFile();
+            }
+            else if (result == MessageBoxResult.Cancel)
+            {
+                e.Cancel = true;
+            }
+
         }
 
         private void SaveDataToFile()
         {
+            SaveData();
             using (var writer = new StreamWriter(TaggedImagesFile))
             {
                 for (var i = 0; i < imageList.Length; i++)

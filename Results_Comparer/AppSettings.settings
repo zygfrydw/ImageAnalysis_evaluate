@@ -9,7 +9,7 @@
       <Value Profile="(Default)">tagged_images.txt</Value>
     </Setting>
     <Setting Name="ResultEventsFile" Type="System.String" Scope="User">
-      <Value Profile="(Default)">events.txt</Value>
+      <Value Profile="(Default)">example_results.txt</Value>
     </Setting>
   </Settings>
 </SettingsFile>

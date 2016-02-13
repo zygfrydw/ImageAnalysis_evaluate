@@ -49,7 +49,7 @@ namespace Results_Comparer {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("events.txt")]
+        [global::System.Configuration.DefaultSettingValueAttribute("example_results.txt")]
         public string ResultEventsFile {
             get {
                 return ((string)(this["ResultEventsFile"]));

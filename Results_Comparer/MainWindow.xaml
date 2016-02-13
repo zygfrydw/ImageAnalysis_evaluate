@@ -1,0 +1,65 @@
+﻿<Window x:Class="Results_Comparer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Results_Comparer"
+        mc:Ignorable="d"
+        Title="Result comparition" Height="500" Width="987.712" Icon="favicon (1).ico" DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Window.Resources>
+        <Image x:Key="NoImageSource" Source="NoImages.png"></Image>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="179"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="277"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="10,0,10,10" Orientation="Vertical" Grid.Row="1" VerticalAlignment="Bottom" >
+            <Label Content="Reference document"/>
+            <TextBox x:Name="RefPath" Height="23" TextWrapping="Wrap" Text="{Binding ReferencePath}" MouseDoubleClick="ReferencePath_DoubleClick" VerticalAlignment="Top"/>
+            <Label Content="Results document"/>
+            <TextBox x:Name="EventPath" Height="23" TextWrapping="Wrap" Text="{Binding ResultsPath}" MouseDoubleClick="EventPath_DoubleClick" VerticalAlignment="Top"/>
+            <Label Content="Image set"/>
+            <TextBox x:Name="ImageSetPathTextBox" Height="46" TextWrapping="Wrap" Text="{Binding ImageSetPath}" MouseDoubleClick="ImageSet_DoubleClick" VerticalAlignment="Top"/>
+            <Button x:Name="CompareButton" Content="Compare results" VerticalAlignment="Top" Height="50"  Click="CompareButton_Click" Margin="0,10,0,0" FontSize="21.333" FontWeight="Bold"/>
+        </StackPanel>
+        <TextBox x:Name="ResultsTextBox" Margin="10" TextWrapping="Wrap" Text="{Binding Results}"  AcceptsReturn="True" IsReadOnly="True"/>
+        <ListView Grid.Column="1" Margin="10" Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding Errors}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding ImageSource}" Height="200"/>
+                        <Grid Width="400">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.Row="0" Margin="0,5,0,5" Content="Name"/>
+                            <Label Grid.Column="0" Grid.Row="1" Margin="0,5,0,5" Content="Correct tags"/>
+                            <Label Grid.Column="0" Grid.Row="2" Margin="0,5,0,5" Content="User tagged as"/>
+                            <Label Grid.Column="0" Grid.Row="3" Margin="0,5,0,5" Content="Missing events"/>
+                            <Label Grid.Column="0" Grid.Row="4" Margin="0,5,0,5" Content="Over classified"/>
+                            <TextBox Grid.Column="1" Grid.Row="0" Margin="0,5,0,5" IsReadOnly="true" Text="{Binding Name}"/>
+                            <TextBox Grid.Column="1" Grid.Row="1" Margin="0,5,0,5" IsReadOnly="true" Text="{Binding CorrectTag}"/>
+                            <TextBox Grid.Column="1" Grid.Row="2" Margin="0,5,0,5" IsReadOnly="true" Text="{Binding UserTag}"/>
+                            <TextBox Grid.Column="1" Grid.Row="3" Margin="0,5,0,5" IsReadOnly="true" Text="{Binding FalseNegative}"/>
+                            <TextBox Grid.Column="1" Grid.Row="4" Margin="0,5,0,5" IsReadOnly="true" Text="{Binding FalsePositive}"/>
+                        </Grid>
+
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>

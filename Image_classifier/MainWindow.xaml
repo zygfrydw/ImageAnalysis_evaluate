@@ -1,0 +1,47 @@
+﻿<Window x:Class="Image_classifier.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Image_classifier"
+        mc:Ignorable="d"
+        Title="Image Classifier" MinHeight="404" MinWidth="592.5" DataContext="{Binding RelativeSource={RelativeSource Self}}" Closing="Window_Closing" Icon="favicon (2).ico">
+    <Window.InputBindings>
+        <KeyBinding Key="Right" Command="{Binding NextImage}" />
+        <KeyBinding Key="Left" Command="{Binding PrevImage}" />
+        <KeyBinding Key="D1" Command="{Binding Event1}" />
+        <KeyBinding Key="D2" Command="{Binding Event2}" />
+        <KeyBinding Key="D3" Command="{Binding Event3}" />
+        <KeyBinding Key="D4" Command="{Binding Event4}" />
+        <KeyBinding Key="D5" Command="{Binding Event5}" />
+    </Window.InputBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="59"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="157"/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="image" Source="{Binding CurrentFrame}" Margin="10"/>
+        <StackPanel Grid.Column="1" Margin="10,10,10,92.333">
+            <CheckBox IsChecked="{Binding OnTrack}" Content="1 - OnTrack"/>
+            <CheckBox IsChecked="{Binding Entering}" Content="2 - Entering"/>
+            <CheckBox IsChecked="{Binding Leaving}" Content="3 - Leaving"/>
+            <CheckBox IsChecked="{Binding Barrier}" Content="4 - Barrier"/>
+            <CheckBox IsChecked="{Binding Train}" Content="5 - Train"/>
+        </StackPanel>
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="10,0,10,1.333" TextWrapping="Wrap" Text="{Binding TaggedImagesFile}" Height="23" VerticalAlignment="Bottom"/>
+        <Button Content="Load tags" Grid.Column="1" Margin="10,0,10,10" Click="LoadButtonClick" Height="20" VerticalAlignment="Bottom" Grid.Row="1"/>
+        <Button Content="Save tags" Grid.Column="1" Margin="10,0,10,35" Click="SaveButtonClick" Height="20" VerticalAlignment="Bottom" Grid.Row="1"/>
+        <Grid Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Width="360" Margin="0,1,0,-1">
+            <TextBox Margin="10,31,93,10" TextWrapping="Wrap"
+                     Text="{Binding ImageSetPath, Mode=TwoWay}" />
+            <Label Content="Path to all images" HorizontalAlignment="Left" Margin="10,0,0,28" Height="26" VerticalAlignment="Bottom" MouseDoubleClick="ShowFolderDialog"/>
+            <Button Content="Load dataset"  Click ="LoadImageSetButtonClick" Margin="275,29,0,10"/>
+        </Grid>
+        <Label Content="Tags file name" Grid.Row="0" Grid.Column="1" Margin="10,0,10,24" Height="26" VerticalAlignment="Bottom"/>
+
+    </Grid>
+</Window>

@@ -1,7 +1,7 @@
 # ImageAnalysis_evaluate
 Evaluation programs for Image Analysis Assignment on Cranfield University
 
-<b>Link to executable:</b> https://github.com/zygfrydw/ImageAnalysis_evaluate/releases/download/0.1/ImageAnalysis_evaluate.zip
+<b>Link to executable:</b> https://github.com/zygfrydw/ImageAnalysis_evaluate/releases/download/0.1.1/ImageAnalysis_evaluation.zip
 
 To compare your results with reference tags:
   - generate results from your program to file of structure similar to "example_results.txt"

@@ -165,6 +165,11 @@ namespace Results_Comparer
                 {
                     bool mistake = false;
                     Error error = new Error() {Name = line.Name};
+                    if (!referenceEvents.ContainsKey(line.Name))
+                    {
+                        MessageBox.Show("Missing image " + line.Name, "Missing");
+                        continue;
+                    }
                     var refLine = referenceEvents[line.Name];
                     foreach (var ev in line.Events)
                     {
@@ -229,7 +234,7 @@ namespace Results_Comparer
         {
             var debug = readAllLines.Select(x =>
             {
-                var match = Regex.Match(x, @"(.+):\s(.*)");
+                var match = Regex.Match(x, @"(.+):\s?(.*)");
                 if (match.Success)
                 {
                     var eventMatch = Regex.Match(match.Groups[2].Value, @"event\s*(\d+)");
@@ -248,6 +253,7 @@ namespace Results_Comparer
                 }
                 else
                 {
+                    Console.WriteLine("Can't parse: " + x);
                     return null;
                 }
             }).Where(x => x != null).ToArray();

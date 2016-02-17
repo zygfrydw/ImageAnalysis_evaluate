@@ -10,7 +10,7 @@ lc-00200.png: event 2 event 4
 lc-00201.png: event 2 event 4
 lc-00202.png: event 2 event 4
 lc-00373.png: event 3 event 4
-lc-00374.png: event 3 event 4
+lc-00374.png: event 4
 lc-00375.png: event 4
 lc-00376.png: event 4
 lc-00377.png: event 4
@@ -34,7 +34,7 @@ lc-00005.png:
 lc-00007.png: event 3
 lc-00012.png:
 lc-00013.png:
-lc-00018.png: event 3
+lc-00018.png:
 lc-00061.png:
 lc-00067.png: event 3
 lc-00088.png:
@@ -73,7 +73,7 @@ lc-00119.png: event 2 event 3
 lc-00125.png: event 2
 lc-00128.png: event 2
 lc-00203.png: event 1 event 2 event 4
-lc-00204.png: event 2 event 3
+lc-00204.png: event 1 event 2 event 3
 lc-00209.png: event 2
 lc-00219.png: event 2
 lc-00221.png: event 2 event 3
@@ -93,7 +93,7 @@ lc-00307.png: event 2
 lc-00321.png: event 2
 lc-00339.png: event 1 event 2
 lc-00349.png: event 2 event 3
-lc-00350.png: event 2 event 3
+lc-00350.png: event 2
 lc-00352.png: event 2 event 3
 lc-00361.png: event 2 event 3
 lc-00415.png: event 2
@@ -128,7 +128,7 @@ lc-00105.png: event 3
 lc-00206.png: event 3
 lc-00207.png: event 3
 lc-00208.png: event 2 event 3
-lc-00211.png: event 3
+lc-00211.png: event 1 event 3
 lc-00212.png: event 3
 lc-00213.png: event 3
 lc-00228.png: event 3
@@ -372,7 +372,7 @@ lc-00444.png: event 5
 lc-00445.png: event 5
 lc-00446.png: event 5
 lc-00447.png: event 5
-lc-00505.png: event 5
+lc-00505.png: event 4 event 5
 lc-00506.png: event 5
 lc-00507.png: event 5
 lc-00508.png: event 5

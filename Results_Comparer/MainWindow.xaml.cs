@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -145,50 +146,26 @@ namespace Results_Comparer
                     MessageBox.Show("Reference file does not exists");
                     return;
                 }
-                var refLines = File.ReadAllLines(ReferencePath).Select(x =>
-                {
-                    var tmp = x.Split(':');
-                    return new {Name = tmp[0], Events = tmp[1].Trim()};
-                })
-                    .ToDictionary(x => x.Name,
-                        y =>
-                            y.Events.Replace("event", "")
-                                .Trim()
-                                .Replace("  ", " ")
-                                .Split(' ')
-                                .Where(x => !string.IsNullOrEmpty(x))
-                                .ToArray());
+                var referenceEvents = ExtractImagesAndEvents(File.ReadAllLines(ReferencePath))
+                    .ToDictionary(x => x.Name, y => y.Events);
+
                 if (!File.Exists(ResultsPath))
                 {
                     MessageBox.Show("Result file does not exists");
                     return;
                 }
-                var testLines = File.ReadAllLines(ResultsPath).Select(x =>
-                {
-                    var tmp = x.Split(':');
-                    return
-                        new
-                        {
-                            Name = Path.GetFileName(tmp[0]),
-                            Events =
-                                tmp[1].Trim()
-                                    .Replace("event", "")
-                                    .Trim()
-                                    .Replace("  ", " ")
-                                    .Split(' ')
-                                    .Where(y => !string.IsNullOrEmpty(y))
-                                    .ToArray()
-                        };
-                }).ToList();
-                int correctEvents = refLines.SelectMany(x => x.Value).Count();
+                var userResultEvents = ExtractImagesAndEvents(File.ReadAllLines(ResultsPath));
+
                 int correct = 0;
                 int falsePositives = 0;
                 int falseNegatives = 0;
-                foreach (var line in testLines)
+                int correctEvents = referenceEvents.SelectMany(x => x.Value).Count();
+
+                foreach (var line in userResultEvents)
                 {
                     bool mistake = false;
                     Error error = new Error() {Name = line.Name};
-                    var refLine = refLines[line.Name];
+                    var refLine = referenceEvents[line.Name];
                     foreach (var ev in line.Events)
                     {
                         if (refLine.Contains(ev))
@@ -231,7 +208,6 @@ namespace Results_Comparer
                         Errors.Add(error);
                     }
                 }
-
                 var allClassified = correctEvents + falsePositives;
                 double accuracy = correct/(double) allClassified;
                 Results =
@@ -242,6 +218,42 @@ namespace Results_Comparer
                 MessageBox.Show(ex.Message, "Unexpected error");
             }
         }
+
+        class ImageEvent
+        {
+            public string Name;
+            public string[] Events;
+        }
+
+        private ImageEvent[] ExtractImagesAndEvents(string[] readAllLines)
+        {
+            var debug = readAllLines.Select(x =>
+            {
+                var match = Regex.Match(x, @"(.+):\s(.*)");
+                if (match.Success)
+                {
+                    var eventMatch = Regex.Match(match.Groups[2].Value, @"event\s*(\d+)");
+                    List<string> events = new List<string>();
+                    while (eventMatch.Success)
+                    {
+                        events.Add(eventMatch.Groups[1].Value);
+                        eventMatch = eventMatch.NextMatch();
+                    }
+
+                    return new ImageEvent
+                    {
+                        Name = Path.GetFileName(match.Groups[1].Value.Trim()),
+                        Events = events.ToArray()
+                    };
+                }
+                else
+                {
+                    return null;
+                }
+            }).Where(x => x != null).ToArray();
+            return debug;
+        }
+
 
         private void SaveSettings()
         {

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Results_Comparer"
         mc:Ignorable="d"
-        Title="Result comparition" Height="500" Width="987.712" Icon="favicon (1).ico" DataContext="{Binding RelativeSource={RelativeSource Self}}">
+        Title="Result comparition" Height="500" Width="987.712" Icon="favicon.ico" DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Window.Resources>
         <Image x:Key="NoImageSource" Source="NoImages.png"></Image>
     </Window.Resources>

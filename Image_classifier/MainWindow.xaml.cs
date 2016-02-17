@@ -42,22 +42,29 @@ namespace Image_classifier
 
         private void LoadImageSet()
         {
-            currentFrameIndex = 0;
-            imageList = Directory.GetFiles(ImageSetPath, "*.png", SearchOption.AllDirectories);
-            imageList = (from im in imageList
-                select new {_Path = im, Name = Path.GetFileNameWithoutExtension(im)}).GroupBy(x => x.Name)
-                .Select(x => x.First()._Path).ToArray();
-            imageTags = new Data[imageList.Length];
-
-            if (imageList.Length == 0)
+            try
             {
-                CurrentFrame = null;
-                MessageBox.Show("You selected empty folder. Please select folder with png images.", "Empty folder");
-                return;
+                currentFrameIndex = 0;
+                imageList = Directory.GetFiles(ImageSetPath, "*.png", SearchOption.AllDirectories);
+                imageList = (from im in imageList
+                    select new {_Path = im, Name = Path.GetFileNameWithoutExtension(im)}).GroupBy(x => x.Name)
+                    .Select(x => x.First()._Path).ToArray();
+                imageTags = new Data[imageList.Length];
+
+                if (imageList.Length == 0)
+                {
+                    CurrentFrame = null;
+                    MessageBox.Show("You selected empty folder. Please select folder with png images.", "Empty folder");
+                    return;
+                }
+                LoadTags();
+                ClearData();
+                LoadCurrentImage();
             }
-            LoadTags();
-            ClearData();
-            LoadCurrentImage();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Unexpected error");
+            }
         }
 
         public bool OnTrack

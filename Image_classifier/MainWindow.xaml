@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Image_classifier"
         mc:Ignorable="d"
-        Title="Image Classifier" MinHeight="404" MinWidth="592.5" DataContext="{Binding RelativeSource={RelativeSource Self}}" Closing="Window_Closing" Icon="favicon (2).ico">
+        Title="Image Classifier" MinHeight="404" MinWidth="592.5" DataContext="{Binding RelativeSource={RelativeSource Self}}" Closing="Window_Closing" Icon="favicon.ico">
     <Window.InputBindings>
         <KeyBinding Key="Right" Command="{Binding NextImage}" />
         <KeyBinding Key="Left" Command="{Binding PrevImage}" />

@@ -72,6 +72,7 @@ namespace Results_Comparer
             get { return _results; }
             set
             {
+
                 if (value == _results) return;
                 _results = value;
                 OnPropertyChanged();
@@ -159,7 +160,8 @@ namespace Results_Comparer
                 int correct = 0;
                 int falsePositives = 0;
                 int falseNegatives = 0;
-                int correctEvents = referenceEvents.SelectMany(x => x.Value).Count();
+                var userFiles = new HashSet<string>(userResultEvents.Select(x=>x.Name)); 
+                int correctEvents = referenceEvents.Where(x=>userFiles.Contains(x.Key)).SelectMany(x => x.Value).Count();
 
                 foreach (var line in userResultEvents)
                 {

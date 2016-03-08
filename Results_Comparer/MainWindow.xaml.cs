@@ -163,6 +163,13 @@ namespace Results_Comparer
                 var userFiles = new HashSet<string>(userResultEvents.Select(x=>x.Name)); 
                 int correctEvents = referenceEvents.Where(x=>userFiles.Contains(x.Key)).SelectMany(x => x.Value).Count();
 
+                var allEvents = referenceEvents.SelectMany(x => x.Value).Distinct().OrderBy(x => x).ToArray();
+
+                var truePositivesPerEv = allEvents.ToDictionary(x => x, _ => 0);
+                var trueNegativesPerEv = allEvents.ToDictionary(x => x, _ => 0);
+                var falsePositivesPerEv = allEvents.ToDictionary(x => x, _ => 0);
+                var falseNegativesPerEv = allEvents.ToDictionary(x => x, _ => 0);
+
                 foreach (var line in userResultEvents)
                 {
                     bool mistake = false;
@@ -177,10 +184,12 @@ namespace Results_Comparer
                     {
                         if (refLine.Contains(ev))
                         {
+                            truePositivesPerEv[ev]++;
                             correct++;
                         }
                         else
                         {
+                            falsePositivesPerEv[ev]++;
                             falsePositives++;
                             mistake = true;
                             error.FalsePositive += " " + ToEventName(ev) + ",";
@@ -190,10 +199,16 @@ namespace Results_Comparer
                     {
                         if (!line.Events.Contains(ev))
                         {
+                            falseNegativesPerEv[ev]++;
                             falseNegatives++;
                             mistake = true;
                             error.FalseNegative += " " + ToEventName(ev) + ",";
                         }
+                    }
+                    foreach (var ev in allEvents)
+                    {
+                        if (!line.Events.Contains(ev) && !refLine.Contains(ev))
+                            trueNegativesPerEv[ev]++;
                     }
 
                     if (mistake)
@@ -218,7 +233,19 @@ namespace Results_Comparer
                 var allClassified = correctEvents + falsePositives;
                 double accuracy = correct/(double) allClassified;
                 Results =
-                    $"All correct events: {correctEvents}\nClassified events: {allClassified}\nAccuracy: {accuracy}\nFalse positive: {falsePositives} (Classified but should not be)\nFalse negative: {falseNegatives} (Not classified but should be)";
+                    $"All correct events: {correctEvents}\n" +
+                    $"Classified events: {allClassified}\n" +
+                    $"Accuracy: {accuracy}\n" +
+                    $"False positive: {falsePositives} (Classified but should not be)\n" +
+                    $"False negative: {falseNegatives} (Not classified but should be)\n\n";
+
+                foreach (var ev in allEvents)
+                    Results +=
+                        $"event {ev}:\n" +
+                        $"True positives: {truePositivesPerEv[ev]}\n" +
+                        $"False positives: {falsePositivesPerEv[ev]}\n" +
+                        $"True negatives: {trueNegativesPerEv[ev]}\n" +
+                        $"False negatives {falseNegativesPerEv[ev]}\n\n";
             }
             catch (Exception ex)
             {

@@ -15,3 +15,15 @@ Tags are not ideal, so you are can improve my tags using "Image_classifier.exe".
   - Move to next and previous image by left and right arrow.  
   - Tag image using check boxes or numerical keys 1-5 ( num pad not supported so far)
   - click "Save tags" button.
+
+<b>Citation</b>
+
+@misc{comparer,
+	author = {Wieszok, Zygfryd},
+	title = {Image Analysis - Evaluate},
+	year = {2016},
+	publisher = {GitHub},
+	journal = {GitHub repository},
+	note = "[Online; accessed 09-March-2016]",
+	howpublished = "\url{https://github.com/zygfrydw/ImageAnalysis\_evaluate}"
+}
